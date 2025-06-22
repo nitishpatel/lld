@@ -14,7 +14,7 @@ def test_user_create():
     assert user.reputation == 0
 
 def test_question_create(user):
-    question = Question(user,"What is Python?","help with python")
+    question = Question(1,user,"What is Python?","help with python")
     assert question.author == user
     assert question.title == "What is Python?"
     assert question.content == "help with python"
@@ -23,6 +23,8 @@ def test_question_create(user):
     assert question.comments == []
     assert question.tags == []
     assert question.created_at is not None
+    assert question.id == 1
+
 
 
 
