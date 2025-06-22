@@ -3,7 +3,7 @@ from user import User
 from question import Question
 
 @pytest.fixture
-def user():
+def user_fixture():
     return User(1, "Test_User", "testuser@email.com", 0)
 
 def test_user_create():
@@ -13,9 +13,9 @@ def test_user_create():
     assert user.email == "testuser@email.com"
     assert user.reputation == 0
 
-def test_question_create(user):
-    question = Question(1,user,"What is Python?","help with python")
-    assert question.author == user
+def test_question_create(user_fixture):
+    question = Question(user_fixture,"What is Python?","help with python")
+    assert question.author == user_fixture
     assert question.title == "What is Python?"
     assert question.content == "help with python"
     assert question.votes == 0
@@ -23,7 +23,7 @@ def test_question_create(user):
     assert question.comments == []
     assert question.tags == []
     assert question.created_at is not None
-    assert question.id == 1
+    assert question.id == id(question)
 
 
 
